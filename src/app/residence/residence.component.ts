@@ -15,29 +15,35 @@ export class ResidenceComponent {
     {id:4,"name": "El Anber","address":"inconnu","image":"../../assets/images/R1.jpg", status: "En Construction"}
     ];
 
-    tableItem = "";
+  tableItem = "";
+  showLocation(res:Residence){
+    if(res.address == "inconnu")
+      alert("Adresse inconnue");
+    else
+      alert("Adresse: "+res.address);
+  }
 
-    showLocation(res:Residence){
-      if(res.address == "inconnu")
-        alert("Adresse inconnue");
-      else
-        alert("Adresse: "+res.address);
+  cardSearch = ""
+  filterResidences() {
+    return this.listResidences.filter(residence =>
+      residence.name.toLowerCase().includes(this.cardSearch.toLowerCase())
+    );
+  }
+
+  likedList: Residence[] = []
+  addLike(res:Residence){
+    if(this.likedList.includes(res)){
+      this.likedList.splice(this.likedList.indexOf(res), 1);
+    }else{
+      this.likedList.push(res);
     }
+  }
 
-    cardSearch = ""
-
-    filterResidences() {
-      return this.listResidences.filter(residence =>
-        residence.name.toLowerCase().includes(this.cardSearch.toLowerCase())
-      );
+  isLiked(res:Residence){
+    if(this.likedList.includes(res)){
+      return false;
+    } else {
+      return true;
     }
-
-    likedList: Residence[] = []
-    addLike(res:Residence){
-      if(this.likedList.includes(res)){
-        this.likedList.splice(this.likedList.indexOf(res), 1);
-      }else{
-        this.likedList.push(res);
-      }
-    }
+  }
 }
