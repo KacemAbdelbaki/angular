@@ -3,8 +3,14 @@
 <br>
 <hr>
 <br>
-<button class="btn btn-primary" [disabled]="status" >Change Name</button>
+<button class="btn btn-primary" [disabled]="status" (click)="diabslebtn()" >Change Status</button>
 <br>
 <hr>
 <br>
 <button class="btn btn-primary" (click)="add()" >console log btn</button>
+<button class="btn btn-primary" (click)="inc()" >variable incremental {{counter}}</button>
+<br>
+<hr>
+<br>
+<input type="text" [(ngModel)]="search" />
+{{search}}

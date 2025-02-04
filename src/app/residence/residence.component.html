@@ -1,0 +1,75 @@
+<!-- <table class="table" >
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Image</th>
+        <th>Status</th>
+    </tr>
+    <tr *ngFor="let item of listResidences">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name | uppercase}}</td>
+        <td>{{ item.address }}</td>
+        <td><img [src]="item.image" alt="image" width="100"></td>
+        <td>{{ item.status }}</td>
+    </tr>
+</table> -->
+
+<br>
+<hr>
+<br>
+
+<input type="text" [(ngModel)]="cardSearch" />
+<div class="row">
+    <div *ngFor="let item of filterResidences()" class="card m-3" style="width: 18rem;">
+        <img class="card-img-top" [src]=item.image alt="Card image cap">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h5 class="card-title">{{item.name}}</h5>
+                <button (click)="addLike(item)"><i class="fa-solid fa-heart"></i></button>
+                <p  *ngIf="item.status == 'Disponible'"><i class="fa-solid fa-check"></i></p>
+                <p  *ngIf="item.status == 'Vendu'"><i class="fa-solid fa-dollar-sign"></i></p>
+                <p  *ngIf="item.status == 'En Construction'"><i class="fa-solid fa-wrench"></i></p>
+            </div>
+            <p class="card-text">{{item.address}}</p>
+            <a href="#" class="btn btn-primary" (click)="showLocation(item)">show location</a>
+        </div>
+    </div>
+</div>
+
+<br>
+<hr>
+<br>
+<div *ngIf="likedList.length > 0">    
+    <h1>Liked List</h1>
+    <div class="row">
+        <div *ngFor="let item of likedList" class="card m-3" style="width: 18rem;">
+            <img class="card-img-top" [src]=item.image alt="Card image cap">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <button (click)="addLike(item)"><i class="fa-solid fa-heart"></i></button>
+                    <p  *ngIf="item.status == 'Disponible'"><i class="fa-solid fa-check"></i></p>
+                    <p  *ngIf="item.status == 'Vendu'"><i class="fa-solid fa-dollar-sign"></i></p>
+                    <p  *ngIf="item.status == 'En Construction'"><i class="fa-solid fa-wrench"></i></p>
+                </div>
+                <p class="card-text">{{item.address}}</p>
+                <a href="#" class="btn btn-primary" (click)="showLocation(item)">show location</a>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<hr>
+<br>
+
+<!-- <input type="text" [(ngModel)]="tableItem" />
+<div *ngFor="let item of listResidences">
+    <div *ngIf="item.name == tableItem">
+        <ul>
+            <li>
+                {{item.name}} {{item.address}}
+            </li>
+        </div>
+    </div>
+</ul> -->
